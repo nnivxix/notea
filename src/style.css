@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+
+ul[data-type="taskList"] li {
+  @apply list-disc flex items-center gap-3 ;
+}
+
+li[data-checked='true'] {
+  @apply text-gray-500 line-through ;
+}
+
+input[type="checkbox"] {
+  @apply cursor-pointer ;
+}
+
+.ProseMirror-focused {
+  @apply outline-none ;
+}

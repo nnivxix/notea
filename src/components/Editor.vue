@@ -35,31 +35,16 @@ onMounted(() => {
         <div class="button-group">
           <button
             @click="editor.chain().focus().toggleTaskList().run()"
-            :class="{ 'is-active': editor.isActive('taskList') }"
+            :class="{
+              'bg-amber-500  ': editor.isActive('taskList'),
+            }"
+            class="p-1 border rounded-lg"
           >
             Toggle task list
           </button>
-          <button
-            @click="editor.chain().focus().splitListItem('taskItem').run()"
-            :disabled="!editor.can().splitListItem('taskItem')"
-          >
-            Split list item
-          </button>
-          <button
-            @click="editor.chain().focus().sinkListItem('taskItem').run()"
-            :disabled="!editor.can().sinkListItem('taskItem')"
-          >
-            Sink list item
-          </button>
-          <button
-            @click="editor.chain().focus().liftListItem('taskItem').run()"
-            :disabled="!editor.can().liftListItem('taskItem')"
-          >
-            Lift list item
-          </button>
         </div>
       </div>
-      <EditorContent :editor="editor" />
+      <EditorContent class="border m-4 p-2 rounded-lg" :editor="editor" />
     </template>
   </div>
 </template>

@@ -4,7 +4,7 @@ import Editor from "./components/Editor.vue";
 
 <template>
   <div>
-    <h1>hello</h1>
+    <h1 class="text-red-400 text-2xl font-semibold">hello</h1>
     <Editor />
   </div>
 </template>
