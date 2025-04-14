@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 
+.bullet-list {
+  @apply list-disc pl-4 ;
+}
 ul[data-type="taskList"] li {
   @apply list-disc flex items-center gap-3 ;
 }
@@ -13,6 +16,18 @@ input[type="checkbox"] {
   @apply cursor-pointer ;
 }
 
+blockquote {
+  @apply border-l-4 border-slate-400/50 pl-4 italic text-slate-500 ;
+}
+
 .ProseMirror-focused {
   @apply outline-none ;
+}
+
+.tiptap {
+  @apply  bg-slate-400/10 rounded-lg p-4 ;
+}
+
+hr {
+  @apply border-slate-400/50 ;
 }

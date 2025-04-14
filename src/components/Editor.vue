@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import {
+  ListChecks,
+  Italic,
+  Bold,
+  Rows2,
+  TextQuote,
+  List,
+} from "lucide-vue-next";
 import TaskList from "@tiptap/extension-task-list";
 import StarterKit from "@tiptap/starter-kit";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import TaskItem from "@tiptap/extension-task-item";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import Blockquote from "@tiptap/extension-blockquote";
 
 let content = ref(`
 <ul data-type="taskList">
@@ -16,7 +26,15 @@ onMounted(() => {
   editor.value = new Editor({
     content: content.value,
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        bulletList: {
+          HTMLAttributes: {
+            class: "bullet-list",
+          },
+        },
+      }),
+      Blockquote,
+      HorizontalRule,
       TaskItem,
       TaskList.configure({
         itemTypeName: "taskItem",
@@ -24,6 +42,7 @@ onMounted(() => {
     ],
     onUpdate({ editor }) {
       content.value = editor.getHTML();
+      console.log("onUpdate");
     },
   });
 });
@@ -31,8 +50,8 @@ onMounted(() => {
 <template>
   <div>
     <template v-if="editor">
-      <div class="control-group">
-        <div class="button-group">
+      <div class="grid gap-2 m-4">
+        <div class="flex gap-2">
           <button
             @click="editor.chain().focus().toggleTaskList().run()"
             :class="{
@@ -40,11 +59,57 @@ onMounted(() => {
             }"
             class="p-1 border rounded-lg"
           >
-            Toggle task list
+            <ListChecks class="w-4 h-4" />
+          </button>
+          <button
+            @click="editor.chain().focus().toggleBulletList().run()"
+            :class="{
+              'bg-amber-500  ': editor.isActive('bulletList'),
+            }"
+            class="p-1 border rounded-lg"
+          >
+            <List class="w-4 h-4" />
+          </button>
+          <button
+            @click="editor.chain().focus().toggleItalic().run()"
+            :class="{
+              'bg-amber-500  ': editor.isActive('italic'),
+            }"
+            class="p-1 border rounded-lg"
+          >
+            <Italic class="w-4 h-4" />
+          </button>
+          <button
+            @click="editor.chain().focus().toggleBold().run()"
+            :class="{
+              'bg-amber-500  ': editor.isActive('bold'),
+            }"
+            class="p-1 border rounded-lg"
+          >
+            <Bold class="w-4 h-4" />
+          </button>
+          <button
+            @click="editor.chain().focus().setHorizontalRule().run()"
+            class="p-1 border rounded-lg"
+          >
+            <Rows2 class="w-4 h-4" />
+          </button>
+          <button
+            @click="editor.chain().focus().toggleBlockquote().run()"
+            :class="{
+              'bg-amber-500  ': editor.isActive('blockquote'),
+            }"
+            class="p-1 border rounded-lg"
+          >
+            <TextQuote class="w-4 h-4" />
           </button>
         </div>
+
+        <EditorContent
+          class="border p-2 min-h-[70vh] rounded-lg"
+          :editor="editor"
+        />
       </div>
-      <EditorContent class="border m-4 p-2 rounded-lg" :editor="editor" />
     </template>
   </div>
 </template>
