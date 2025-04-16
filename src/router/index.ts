@@ -6,6 +6,7 @@ import {
 
 import Index from "../pages/index.vue";
 import Uid from "../pages/notes/uid.vue";
+import NotFound from "../components/404.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -17,6 +18,11 @@ const routes: RouteRecordRaw[] = [
     path: "/notes/:uid",
     component: Uid,
     name: "notes.uid",
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: NotFound,
   },
 ];
 
