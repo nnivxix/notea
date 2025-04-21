@@ -40,7 +40,7 @@ const rowEnd = computed(() => {
     <time :datetime="note.created_at" class="text-gray-400 text-sm">{{
       formatTime(note.created_at)
     }}</time>
-    <h2 class="text-xl font-bold">{{ note.title }}</h2>
+    <h2 class="text-xl font-bold line-clamp-1">{{ note.title }}</h2>
     <div
       class="mt-2 max-h-72 overflow-hidden"
       v-html="note.content"
