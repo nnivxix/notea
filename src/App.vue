@@ -1,10 +1,14 @@
-<script setup lang="ts">
-import Editor from "./components/Editor.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    <h1 class="text-red-400 text-2xl font-semibold">hello</h1>
-    <Editor />
-  </div>
+  <main
+    class="max-w-lg rounded-2xl flex flex-col min-h-screen bg-gray-50 px-4 mx-auto"
+  >
+    <header class="py-3">
+      <RouterLink to="/" class="text-2xl" title="Notea"> Notea</RouterLink>
+    </header>
+    <div class="flex-1 mb-6">
+      <RouterView />
+    </div>
+  </main>
 </template>
