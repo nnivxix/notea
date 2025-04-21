@@ -1,39 +1,46 @@
 const notes = [
   {
-    id: 1,
+    id: "abcde",
     title: "Note 1",
-    content: "This is the first note.",
+    content: "<p>This is the first note.</p>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
   {
-    id: 2,
+    id: "fghij",
     title: "Note 2",
-    content: "This is the second note.",
+    content: "<p>This is the second note.</p>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
   {
-    id: 3,
+    id: "klmno",
     title: "Note 3",
-    content: "This is the third note.",
+    content: "<ul><li>This is the third note.</li></ul>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
   {
-    id: 4,
+    id: "pqrst",
     title: "Note 4",
-    content: "This is the fourth note.",
+    content: "<ol><li>This is the fourth note.</li></ol>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
   {
-    id: 5,
+    id: "uvwxy",
     title: "Note 5",
-    content: "This is the fifth note.",
+    content:
+      "<ul><li>This is the fifth note.</li><li>Another list item</li></ul>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
   {
-    id: 6,
+    id: "zabcd",
     title: "Note 6",
-    content: "This is the sixth note.",
+    content: "<p>This is the sixth note.</p><p>With another paragraph.</p>",
+    created_at: "2023-10-26T00:00:00.000Z",
   },
 ];
 
 export const useNotes = () => {
   const getNote = (uid: string) => {
-    const note = notes.find((note) => note.id === parseInt(uid));
+    const note = notes.find((note) => note.id === uid);
 
     if (!note) {
       return {
