@@ -15,11 +15,7 @@ import TaskItem from "@tiptap/extension-task-item";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Blockquote from "@tiptap/extension-blockquote";
 
-let content = ref(`
-<ul data-type="taskList">
-<li data-type="taskItem" data-checked="true">A list item</li>
-<li data-type="taskItem" data-checked="false">And another one</li>
-</ul>`);
+const content = defineModel<string>("content");
 const editor = ref<Editor | null>(null);
 
 onMounted(() => {
@@ -42,7 +38,6 @@ onMounted(() => {
     ],
     onUpdate({ editor }) {
       content.value = editor.getHTML();
-      console.log("onUpdate");
     },
   });
 });
