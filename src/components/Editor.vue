@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import {
   ListChecks,
   Italic,
@@ -16,10 +16,8 @@ import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Blockquote from "@tiptap/extension-blockquote";
 
 const content = defineModel<string>("content");
-const editor = ref<Editor | null>(null);
-
-onMounted(() => {
-  editor.value = new Editor({
+const editor = ref<Editor | null>(
+  new Editor({
     content: content.value,
     extensions: [
       StarterKit.configure({
@@ -39,8 +37,8 @@ onMounted(() => {
     onUpdate({ editor }) {
       content.value = editor.getHTML();
     },
-  });
-});
+  })
+);
 </script>
 <template>
   <div>
@@ -102,7 +100,7 @@ onMounted(() => {
 
         <EditorContent
           class="border p-2 min-h-[70vh] rounded-lg"
-          :editor="editor"
+          :editor="editor as Editor"
         />
       </div>
     </template>
