@@ -1,4 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { App as CapacitorApp } from "@capacitor/app";
+import { useRoute, useRouter } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
+
+CapacitorApp.addListener("backButton", (event) => {
+  if (!event.canGoBack || route.path === "/") {
+    CapacitorApp.exitApp();
+  } else {
+    router.back();
+  }
+});
+</script>
 
 <template>
   <main
