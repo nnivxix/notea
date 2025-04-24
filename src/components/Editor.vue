@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
 import {
   ListChecks,
   Italic,
@@ -16,30 +15,26 @@ import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Blockquote from "@tiptap/extension-blockquote";
 
 const content = defineModel<string>("content");
-const editor = ref<Editor | null>(null);
-
-onMounted(() => {
-  editor.value = new Editor({
-    content: content.value,
-    extensions: [
-      StarterKit.configure({
-        bulletList: {
-          HTMLAttributes: {
-            class: "bullet-list",
-          },
+const editor: Editor = new Editor({
+  content: content.value,
+  extensions: [
+    StarterKit.configure({
+      bulletList: {
+        HTMLAttributes: {
+          class: "bullet-list",
         },
-      }),
-      Blockquote,
-      HorizontalRule,
-      TaskItem,
-      TaskList.configure({
-        itemTypeName: "taskItem",
-      }),
-    ],
-    onUpdate({ editor }) {
-      content.value = editor.getHTML();
-    },
-  });
+      },
+    }),
+    Blockquote,
+    HorizontalRule,
+    TaskItem,
+    TaskList.configure({
+      itemTypeName: "taskItem",
+    }),
+  ],
+  onUpdate({ editor }) {
+    content.value = editor.getHTML();
+  },
 });
 </script>
 <template>
