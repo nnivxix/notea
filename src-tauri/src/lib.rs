@@ -1,7 +1,10 @@
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   tauri::Builder::default()
-    .setup(|app| {
+    .setup(|app: &mut tauri::App| {
+      #[cfg(mobile)]
+      app.handle().plugin(tauri_plugin_app_events::init())?;
+      
       if cfg!(debug_assertions) {
         app.handle().plugin(
           tauri_plugin_log::Builder::default()
