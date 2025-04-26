@@ -1,5 +1,25 @@
-# Vue 3 + TypeScript + Vite
+# Notea
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Notea is a simple note-taking app that allows you to create, edit, and delete notes. It is built using React and TypeScript.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## How To Build Android using Capacitor
+
+1. Build first
+
+   ```bash
+   pnpm run build
+   ```
+
+    This will build the app and create a `dist` folder with the production build.
+
+2. Sync the build to the Android
+
+   ```bash
+   pnpm android-sync
+   ```
+
+3. Build the App
+
+   ```bash
+   pnpm android-build
+   ```

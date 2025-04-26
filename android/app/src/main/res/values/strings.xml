@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">notea</string>
+    <string name="title_activity_main">notea</string>
+    <string name="package_name">com.notea.app</string>
+    <string name="custom_url_scheme">com.notea.app</string>
+</resources>
