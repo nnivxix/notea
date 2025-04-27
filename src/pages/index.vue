@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import NoteCard from "../components/NoteCard.vue";
-import { useNotes } from "../composables/useNotes";
+import { onMounted, ref } from "vue";
+import { getAll } from "../utils/indexedDB";
 
-const { notes } = useNotes();
+const notes = ref();
+
+onMounted(async () => {
+  notes.value = await getAll();
+});
 </script>
 <template>
   <div class="grid grid-cols-2 gap-4">

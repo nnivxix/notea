@@ -2,14 +2,10 @@
 import { useElementSize } from "@vueuse/core";
 import formatTime from "../utils/formatTime";
 import { computed, useTemplateRef } from "vue";
+import type { Note } from "../types";
 
 const { note } = defineProps<{
-  note: {
-    id: string;
-    title: string;
-    content: string;
-    created_at: string;
-  };
+  note: Note;
 }>();
 
 const contentEl = useTemplateRef("contentEl");
@@ -37,8 +33,8 @@ const rowEnd = computed(() => {
       'grid-row-end': rowEnd,
     }"
   >
-    <time :datetime="note.created_at" class="text-gray-400 text-sm">{{
-      formatTime(note.created_at)
+    <time :datetime="note.updatedAt as string" class="text-gray-400 text-sm">{{
+      formatTime(note.updatedAt as string)
     }}</time>
     <h2 class="text-xl font-bold line-clamp-1">{{ note.title }}</h2>
     <div

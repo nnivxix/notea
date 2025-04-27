@@ -11,8 +11,6 @@ import TaskList from "@tiptap/extension-task-list";
 import StarterKit from "@tiptap/starter-kit";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import TaskItem from "@tiptap/extension-task-item";
-import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import Blockquote from "@tiptap/extension-blockquote";
 
 const content = defineModel<string>("content");
 const editor: Editor = new Editor({
@@ -25,8 +23,6 @@ const editor: Editor = new Editor({
         },
       },
     }),
-    Blockquote,
-    HorizontalRule,
     TaskItem,
     TaskList.configure({
       itemTypeName: "taskItem",
