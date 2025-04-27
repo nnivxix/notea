@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+button {
+  cursor: pointer;
+}
 
 .bullet-list {
   @apply list-disc pl-4 ;

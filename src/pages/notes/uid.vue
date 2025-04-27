@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Editor from "../../components/Editor.vue";
 import { useNotes } from "../../composables/useNotes";
-import { onUnmounted } from "vue";
-import { save } from "../../utils/indexedDB";
+import { onUnmounted, ref } from "vue";
+import { save, remove } from "../../utils/indexedDB";
+import { Trash2 } from "lucide-vue-next";
 
+const isDeleted = ref(false);
+const router = useRouter();
 const route = useRoute();
 const { uid } = route.params;
 
@@ -17,20 +20,39 @@ const updateTitle = (event: Event) => {
   content.title = target.textContent || "";
 };
 
+const deleteNote = async () => {
+  isDeleted.value = true;
+  try {
+    await remove(uid as string);
+    await router.push({ name: "index" });
+  } catch (error) {
+    console.error("Error deleting note:", error);
+  }
+};
+
 onUnmounted(async () => {
-  await save(content);
+  if (!isDeleted.value) {
+    await save(content);
+  }
 });
 </script>
 <template>
-  <div>
+  <div class="grid grid-cols-12 gap-x-4">
     <h1
-      class="text-xl font-bold mx-4"
+      class="text-xl font-bold ml-4 col-span-10"
       contenteditable
       @input="updateTitle($event)"
       @keydown.enter.prevent
     >
       {{ content.title }}
     </h1>
-    <Editor v-model:content="content.content" />
+    <button
+      class="col-span-2 bg-red-500 p-2 rounded-full self-center place-self-end mr-4"
+      @click="deleteNote"
+      title="Delete note"
+    >
+      <Trash2 class="w-4 h-4 text-white" />
+    </button>
+    <Editor class="col-span-full" v-model:content="content.content" />
   </div>
 </template>

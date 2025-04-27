@@ -1,25 +1,10 @@
 <script setup lang="ts">
-import { useElementSize } from "@vueuse/core";
 import formatTime from "../utils/formatTime";
-import { computed, useTemplateRef } from "vue";
 import type { Note } from "../types";
 
 const { note } = defineProps<{
   note: Note;
 }>();
-
-const contentEl = useTemplateRef("contentEl");
-
-const { width, height } = useElementSize(contentEl);
-
-const rowEnd = computed(() => {
-  let rows = Math.ceil(height.value / width.value);
-
-  if (rows > 2) {
-    rows = 2;
-  }
-  return `span ${rows}`;
-});
 </script>
 <template>
   <RouterLink
