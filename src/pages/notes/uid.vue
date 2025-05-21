@@ -20,6 +20,10 @@ const updateTitle = (event: Event) => {
   content.title = target.textContent || "";
 };
 
+const updateColor = (color: string) => {
+  content.color = color;
+};
+
 const deleteNote = async () => {
   isDeleted.value = true;
   try {
@@ -53,6 +57,11 @@ onUnmounted(async () => {
     >
       <Trash2 class="w-4 h-4 text-white" />
     </button>
-    <Editor class="col-span-full" v-model:content="content.content" />
+    <Editor
+      class="col-span-full"
+      v-model:content="content.content"
+      @update:color="updateColor"
+      :color="content.color"
+    />
   </div>
 </template>
