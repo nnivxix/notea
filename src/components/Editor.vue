@@ -20,11 +20,11 @@ const { color } = defineProps<{
 
 // TODO: Change these colors to a more suitable color palette
 const COLORS = {
-  primary: "#4ade80",
-  secondary: "#f472b6",
-  accent: "#facc15",
-  neutral: "#cbd5e1",
-  base: "#f8fafc",
+  primary: "#a7f3d0", // Pastel green
+  secondary: "#f0abfc", // Pastel purple
+  accent: "#fde68a", // Pastel yellow
+  neutral: "#e5e7eb", // Light gray
+  base: "#f9fafb", // Very light gray
 };
 
 const editor: Editor = new Editor({
@@ -129,7 +129,15 @@ const updateColor = (color: string) => {
           :style="{
             backgroundColor: backgroundColor,
           }"
-          class="border col-span-2 p-2 min-h-[70vh] rounded-lg"
+          class="col-span-2 p-2 min-h-[70vh] rounded-lg"
+          :class="{
+            'text-gray-800':
+              backgroundColor !== COLORS.neutral &&
+              backgroundColor !== COLORS.base,
+            'text-gray-600':
+              backgroundColor === COLORS.neutral ||
+              backgroundColor === COLORS.base,
+          }"
           :editor="editor"
         />
       </div>
